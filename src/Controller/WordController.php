@@ -16,6 +16,7 @@ class WordController extends AbstractController{
     public $almost_palindrome_score = 0;
     public $palindrome_points = 3;
     public $almost_palindrome_points = 2;
+    
     /**
      * @Route("api/index")
      * @Method({"GET"})
@@ -37,10 +38,10 @@ class WordController extends AbstractController{
         }
 
         //response code of reuqest
-        $get_http_response_code = getHttpResponseCode($url);
+        // $get_http_response_code = getHttpResponseCode($url);
         $word = new Word();
         $almost_palindrome = null;
-        if ( $get_http_response_code == 200 ) {
+        // if ( $get_http_response_code == 200 ) {
 
             //Add unique letters number(points) to score
             $this->unique_letters_score = $word->numOfUniqueLetters($word_to_lower_case);
@@ -49,7 +50,7 @@ class WordController extends AbstractController{
             //Check if word is palidrome
             $palindrome= $word->isPalindrome($word_to_lower_case);
             //Check if word is almost palidrome
-            !$palindrome ? $almost_palindrome = $word->isContaintingPalindrome($word_to_lower_case) : $almost_palindrome = null;
+            !$palindrome ? $almost_palindrome = $word->isAlmostPalindrome($word_to_lower_case) : $almost_palindrome;
             
             if($palindrome){
 
@@ -72,8 +73,8 @@ class WordController extends AbstractController{
                     "total score" => $this->total_score
                 ]
             );
-            } else {
-            return $this->json(["message" => "We are sorry, we couldn't find definitions for the word you were looking for."]);
-            }
+            // } else {
+            // return $this->json(["message" => "We are sorry, we couldn't find definitions for the word you were looking for."]);
+            // }
     }
 }
