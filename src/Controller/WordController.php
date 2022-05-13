@@ -30,8 +30,8 @@ class WordController extends AbstractController{
         $word = new Word();
         $almost_palindrome = null;
         
-        // url for checking if word is in english
-        if ( $word->CheckIfWordIsInEnglish($word_to_lower_case) == 200 ) {
+        $response_code = $word->checkIfWordIsInEnglish($word_to_lower_case);
+        if ($response_code == 200 ) {
 
             // Add unique letters number(points) to score
             $this->unique_letters_score = $word->numOfUniqueLetters($word_to_lower_case);

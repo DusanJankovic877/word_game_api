@@ -3,8 +3,9 @@ namespace App\Entity;
 
 class Word
 {
-    public function CheckIfWordIsInEnglish ($word_to_lower_case){
+    public function checkIfWordIsInEnglish ($word_to_lower_case){
 
+        // url for checking if word is in english
         $url = "https://api.dictionaryapi.dev/api/v2/entries/en/".$word_to_lower_case;
         function getHttpResponseCode($url) {
             $headers = get_headers($url);
